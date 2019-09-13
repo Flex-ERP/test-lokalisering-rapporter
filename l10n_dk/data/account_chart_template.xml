@@ -1,0 +1,10 @@
+<odoo>
+    <data noupdate="True">
+<!--         <record id="dk_chart_template" model="account.chart.template"> -->
+<!--             <field name="name">Omsætning</field> -->
+<!--         </record> -->
+    <function model="account.chart.template" name="try_loading_for_current_company">
+            <value eval="[ref('l10n_dk.dk_chart_template')]"/>
+        </function>
+       </data>
+</odoo>
