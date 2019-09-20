@@ -23,7 +23,6 @@ This is the module to manage the **accounting chart for Denmark**. Cover both on
 
 - Dansk moms
         - 25% moms
-        - Hotel moms 12,50%
         - Resturationsmoms 6,25%
         - Omvendt betalingspligt
         
@@ -80,13 +79,6 @@ Produkt setup:
 
 **Købskonto:**      2012 Direkte omkostninger vare, u/moms
 
-.
-
-**Hotelophold**
-
-**Købsmoms:**       Hotel moms 12,50%, købsmoms
-
-**Købskonto:**      4040 Hotelophold
 
 .
 
@@ -111,8 +103,6 @@ Copyright 2018 Odoo House ApS
         'data/account_fiscal_position_tax_template.xml',
         'data/account_fiscal_position_account_template.xml',
         'data/account_chart_template.xml',
-        #'data/account_financial_report.xml',
-        #'data/account_deafults.xml',
     ],
     'active': False,
     'installable': True

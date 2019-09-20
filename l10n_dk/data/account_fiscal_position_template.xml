@@ -15,6 +15,5 @@
             <field name="name">3. lande (Virksomhed / Privat)</field>
             <field name="chart_template_id" ref="dk_chart_template" />
         </record>
-
     </data>
 </odoo>

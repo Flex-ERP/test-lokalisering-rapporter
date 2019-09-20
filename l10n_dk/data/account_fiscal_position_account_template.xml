@@ -35,7 +35,6 @@
         </record>
         
         <!-- EU lande -->
-        
         <record
             id="fiscal_position_account_salgvare_eu"
             model="account.fiscal.position.account.template">

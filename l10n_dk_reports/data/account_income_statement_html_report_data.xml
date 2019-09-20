@@ -2,13 +2,13 @@
 <!-- (c) 2019 Odoo House ApS -->
 <odoo>
     <record id="account_income_statement_report_l10n_dk_resultatopgørelse" model="account.financial.html.report">
-        <field name="name">Resultatopgørelse DK</field>
+        <field name="name">Resultatopgørelse</field>
         <field name="date_range" eval="1"/>
         <field name="cash_basis" eval="True"/>
         <field name="unfold_all_filter" eval="True"/>
         <field name="show_journal_filter" eval="True"/>
         <field name="analytic" eval="True"/>
-        <field name="parent_id" ref="account.account_reports_legal_statements_menu"/>
+        <field name="parent_id" ref="account_reports_dk_statements_menu"/>
     </record>
     
     <record id="account_income_statement_report_l10n_dk_Årets_resultat" model="account.financial.html.report.line">
@@ -24,7 +24,7 @@
         <field name="name">Omsætning</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">OMS</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="2"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_revenue'))]"/>
         <field name="show_domain">foldable</field>
@@ -36,7 +36,7 @@
         <field name="name">Direkte omkostninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">DO</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="3"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_direct_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -53,12 +53,11 @@
         <field name="formulas">balance = OMS.balance + DO.balance</field>
     </record>
     
-    
     <record id="account_income_statement_report_l10n_dk_Personaleomkostninger" model="account.financial.html.report.line">
         <field name="name">Personaleomkostninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">PERSO</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="5"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_staff_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -70,7 +69,7 @@
         <field name="name">Salgsfremmende omkostninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">SAOM</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="6"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_sales_promotions_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -82,7 +81,7 @@
         <field name="name">Biler og driftmidler</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">BILDM</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="7"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_cars_equipment_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -94,7 +93,7 @@
         <field name="name">Lokaleomkostninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">LOKOM</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="8"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_rooms_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -106,7 +105,7 @@
         <field name="name">Administrationsomkostninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">ADMOM</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="9"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_administration_costs'))]"/>
         <field name="show_domain">foldable</field>
@@ -135,7 +134,7 @@
         <field name="name">Af- og nedskrivninger</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">AFNED</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="12"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_depreciation'))]"/>
         <field name="show_domain">foldable</field>
@@ -154,7 +153,7 @@
         <field name="name">Finansielle indægter</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">FININ</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="14"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_financial_income'))]"/>
         <field name="show_domain">foldable</field>
@@ -166,7 +165,7 @@
         <field name="name">Finansielle udgifter</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">FINUD</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="15"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_financial_expenses'))]"/>
         <field name="show_domain">foldable</field>
@@ -187,7 +186,7 @@
         <field name="name">Ekstraordinære indtægter</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">EKSI</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="17"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_extraordinary_income'))]"/>
         <field name="show_domain">foldable</field>
@@ -199,7 +198,7 @@
         <field name="name">Ekstraordinære udgifter</field>
         <field name="parent_id" ref="account_income_statement_report_l10n_dk_Årets_resultat"/>
         <field name="code">EKSU</field>
-        <field name="level" eval="2"/>
+        <field name="level" eval="3"/>
         <field name="sequence" eval="18"/>
         <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_extraordinary_expenses'))]"/>
         <field name="show_domain">foldable</field>

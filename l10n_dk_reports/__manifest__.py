@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # Author: Odoo House ApS <info@odoohouse.dk> 
 
-# Copyright (c) 2018 - Present | Odoo House ApS - https://odoohouse.dk
+# Copyright (c) 2019 - Present | Odoo House ApS - https://odoohouse.dk
 # All rights reserved.
 
 {

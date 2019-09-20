@@ -2,13 +2,13 @@
 <!-- (c) 2019 Odoo House ApS -->
 <odoo>
     <record id="account_balance_report_l10n_dk_balance" model="account.financial.html.report">
-        <field name="name">Balance DK</field>
+        <field name="name">Balance</field>
         <field name="date_range" eval="1"/>
         <field name="cash_basis" eval="True"/>
         <field name="unfold_all_filter" eval="True"/>
         <field name="show_journal_filter" eval="True"/>
         <field name="analytic" eval="True"/>
-        <field name="parent_id" ref="account.account_reports_legal_statements_menu"/>
+        <field name="parent_id" ref="account_reports_dk_statements_menu"/>
     </record>
 
     <record id="account_balance_report_l10n_dk_aktiver" model="account.financial.html.report.line">
@@ -50,7 +50,7 @@
         <field name="formulas">balance = GBYG.balance + AADI.balance</field>
     </record>
     
-     <record id="account_balance_report_l10n_dk_grunde_og_bygninger" model="account.financial.html.report.line">
+    <record id="account_balance_report_l10n_dk_grunde_og_bygninger" model="account.financial.html.report.line">
         <field name="name">Grunde og bygninger</field>
         <field name="parent_id" ref="account_balance_report_l10n_anlægsaktiver"/>
         <field name="code">GBYG</field>
@@ -162,8 +162,9 @@
         <field name="level" eval="0"/>
         <field name="sequence" eval="14"/>
         <field name="formulas">balance = EGEN.balance + LANG.balance + KORT.balance</field>
-    </record>   
-      <record id="account_balance_report_l10n_egenkapital" model="account.financial.html.report.line">
+    </record>
+    
+    <record id="account_balance_report_l10n_egenkapital" model="account.financial.html.report.line">
         <field name="name">EGENKAPITAL</field>
         <field name="parent_id" ref="account_balance_report_l10n_dk_passiver"/>
         <field name="code">EGEN</field>
@@ -171,22 +172,23 @@
         <field name="sequence" eval="9"/>
         <field name="formulas">balance = EGEN2.balance + AARES.balance</field>
     </record>
-        <record id="account_financial_current_year_earnings_line_1" model="account.financial.html.report.line">
-            <field name="name">Årets foreløbige resultat</field>
-            <field name="code">AARES</field>
-            <field name="domain" eval="[('account_id.user_type_id', 'in', [
-                ref('account.data_account_type_revenue'),
-                ref('account.data_account_type_other_income'),
-                ref('account.data_account_type_direct_costs'),
-                ref('account.data_account_type_expenses'),
-                ref('account.data_account_type_depreciation')
-            ])]" />
-            <field name="formulas">balance = sum.balance</field>
-            <field name="sequence" eval="10"/>
-            <field name="parent_id" ref='account_balance_report_l10n_egenkapital'/>
-            <field name="special_date_changer">from_fiscalyear</field>
-            <field name="level" eval="3" />
-        </record>
+    
+    <record id="account_financial_current_year_earnings_line_1" model="account.financial.html.report.line">
+        <field name="name">Årets foreløbige resultat</field>
+        <field name="code">AARES</field>
+        <field name="domain" eval="[('account_id.user_type_id', 'in', [
+            ref('account.data_account_type_revenue'),
+            ref('account.data_account_type_other_income'),
+            ref('account.data_account_type_direct_costs'),
+            ref('account.data_account_type_expenses'),
+            ref('account.data_account_type_depreciation')
+        ])]" />
+        <field name="formulas">balance = sum.balance</field>
+        <field name="sequence" eval="10"/>
+        <field name="parent_id" ref='account_balance_report_l10n_egenkapital'/>
+        <field name="special_date_changer">from_fiscalyear</field>
+        <field name="level" eval="3" />
+    </record>
 
     <record id="account_balance_report_l10n_egenkapital2" model="account.financial.html.report.line">
         <field name="name">Egenkapital</field>
@@ -194,8 +196,10 @@
         <field name="code">EGEN2</field>
         <field name="level" eval="3"/>
         <field name="sequence" eval="15"/>
-        <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_equity_corporations'))]"/>
-<!--         <field name="domain" eval="[('account_id.tag_ids', 'in', [22, 23])]"/> -->
+        <field name="domain" eval="[('account_id.group_id', 'in', [
+            ref('l10n_dk.account_group_equity_individual_enterprices'),
+            ref('l10n_dk.account_group_equity_corporations')
+        ])]"/>
         <field name="show_domain">foldable</field>
         <field name="formulas">balance = sum.balance</field>
         <field name="groupby">account_id</field>
@@ -210,7 +214,7 @@
         <field name="formulas">balance = KREIN.balance</field>
     </record>
     
-     <record id="account_balance_report_l10n_kreditinstitutter" model="account.financial.html.report.line">
+    <record id="account_balance_report_l10n_kreditinstitutter" model="account.financial.html.report.line">
         <field name="name">Kreditinstitutter</field>
         <field name="parent_id" ref="account_balance_report_l10n_langfristet_gæld"/>
         <field name="code">KREIN</field>
@@ -228,7 +232,7 @@
         <field name="code">KORT</field>
         <field name="level" eval="2"/>
         <field name="sequence" eval="18"/>
-        <field name="formulas">balance = BNKG.balance + LEVG.balance + MOAF.balance + LRG.balance + AKFG.balance</field>
+        <field name="formulas">balance = BNKG.balance + FORKU.balance + LEVG.balance + MOAF.balance + LRG.balance + AKFG.balance</field>
     </record>
     
     <record id="account_balance_report_l10n_bankgæld" model="account.financial.html.report.line">
@@ -242,7 +246,18 @@
         <field name="formulas">balance = sum.balance</field>
         <field name="groupby">account_id</field>
     </record>
-    
+     
+    <record id="account_balance_report_l10n_forudbet_kunder" model="account.financial.html.report.line">
+        <field name="name">Forudbetalinger fra kunder</field>
+        <field name="parent_id" ref="account_balance_report_l10n_kortfristet_gæld"/>
+        <field name="code">FORKU</field>
+        <field name="level" eval="3"/>
+        <field name="sequence" eval="19"/>
+        <field name="domain" eval="[('account_id.group_id', '=', ref('l10n_dk.account_group_prepayments_from_customers'))]"/>
+        <field name="show_domain">foldable</field>
+        <field name="formulas">balance = sum.balance</field>
+        <field name="groupby">account_id</field>
+    </record>   
     <record id="account_balance_report_l10n_leverandørgæld" model="account.financial.html.report.line">
         <field name="name">Leverandørgæld</field>
         <field name="parent_id" ref="account_balance_report_l10n_kortfristet_gæld"/>
@@ -290,6 +305,7 @@
         <field name="formulas">balance = sum.balance</field>
         <field name="groupby">account_id</field>
     </record>
+    
     <record id="account_balance_report_l10n_nulkontrol" model="account.financial.html.report.line">
         <field name="name">Nulkontrol</field>
         <field name="financial_report_id" ref="account_balance_report_l10n_dk_balance"/>
